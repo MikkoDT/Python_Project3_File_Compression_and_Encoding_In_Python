@@ -1,2 +1,10 @@
+import zlib, base64
+
 data = open('dem1.txt','r').read()
-print(data)
+#print(data)
+data_bytes = bytes(data,'utf-8')
+compressed_data = base64.b64encode(zlib.compress(data_bytes,9))
+#print(compressed_data) 
+decoded_data = compressed_data.decode('utf-8')
+compressed_file = open('compressed.txt','w')
+compressed_file.write(decoded_data)
